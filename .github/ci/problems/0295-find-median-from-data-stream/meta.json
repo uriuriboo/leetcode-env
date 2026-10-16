@@ -1,0 +1,45 @@
+{
+  "questionId": "295",
+  "frontendId": "295",
+  "title": "Find Median from Data Stream",
+  "slug": "find-median-from-data-stream",
+  "difficulty": "Hard",
+  "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+  "compare": "exact",
+  "metaData": {
+    "classname": "MedianFinder",
+    "constructor": {
+      "params": []
+    },
+    "methods": [
+      {
+        "params": [
+          {
+            "type": "integer",
+            "name": "num"
+          }
+        ],
+        "name": "addNum",
+        "return": {
+          "type": "void"
+        }
+      },
+      {
+        "params": [],
+        "name": "findMedian",
+        "return": {
+          "type": "double"
+        }
+      }
+    ],
+    "return": {
+      "type": "boolean"
+    },
+    "systemdesign": true
+  },
+  "snippets": {
+    "cpp": "class MedianFinder {\npublic:\n    MedianFinder() {\n        \n    }\n    \n    void addNum(int num) {\n        \n    }\n    \n    double findMedian() {\n        \n    }\n};\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * MedianFinder* obj = new MedianFinder();\n * obj->addNum(num);\n * double param_2 = obj->findMedian();\n */",
+    "python3": "class MedianFinder:\n\n    def __init__(self):\n        \n\n    def addNum(self, num: int) -> None:\n        \n\n    def findMedian(self) -> float:\n        \n\n\n# Your MedianFinder object will be instantiated and called as such:\n# obj = MedianFinder()\n# obj.addNum(num)\n# param_2 = obj.findMedian()",
+    "rust": "struct MedianFinder {\n\n}\n\n\n/** \n * `&self` means the method takes an immutable reference.\n * If you need a mutable reference, change it to `&mut self` instead.\n */\nimpl MedianFinder {\n\n    fn new() -> Self {\n        \n    }\n    \n    fn add_num(&self, num: i32) {\n        \n    }\n    \n    fn find_median(&self) -> f64 {\n        \n    }\n}\n\n/**\n * Your MedianFinder object will be instantiated and called as such:\n * let obj = MedianFinder::new();\n * obj.add_num(num);\n * let ret_2: f64 = obj.find_median();\n */"
+  }
+}

@@ -1,0 +1,45 @@
+name: Check Environment
+
+on:
+  push:
+    branches: '**'
+    # ドキュメントだけの変更では環境に影響しないため動かさない（ほかのファイルも変わっていれば動く）
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+
+jobs:
+  # GitHub のランナーで postCreateCommand.bash を実行し（ツールが無ければ入れる）、テストする
+  runner:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v7
+
+    - name: Run postCreateCommand.bash
+      run: bash .devcontainer/postCreateCommand.bash
+
+    - name: Test
+      run: bash .github/ci/test.bash
+
+    # LeetCode の API への接続。LeetCode 側の都合で失敗することがあるので、失敗しても続ける
+    - name: Fetch a problem from LeetCode
+      continue-on-error: true
+      run: |
+        lc new 9 --lang all --no-open
+        lc build problems/0009-palindrome-number/solution.cpp
+        lc build problems/0009-palindrome-number/solution.rs
+
+  # .devcontainer/Dockerfile からイメージを作り、コンテナの中でテストする
+  devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v7
+
+    - name: Build the devcontainer and test
+      uses: devcontainers/ci@v0.3
+      with:
+        push: never
+        runCmd: bash .github/ci/test.bash

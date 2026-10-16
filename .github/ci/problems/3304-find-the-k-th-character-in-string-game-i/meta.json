@@ -1,0 +1,26 @@
+{
+  "questionId": "3600",
+  "frontendId": "3304",
+  "title": "Find the K-th Character in String Game I",
+  "slug": "find-the-k-th-character-in-string-game-i",
+  "difficulty": "Easy",
+  "url": "https://leetcode.com/problems/find-the-k-th-character-in-string-game-i/",
+  "compare": "exact",
+  "metaData": {
+    "name": "kthCharacter",
+    "params": [
+      {
+        "name": "k",
+        "type": "integer"
+      }
+    ],
+    "return": {
+      "type": "character"
+    }
+  },
+  "snippets": {
+    "cpp": "class Solution {\npublic:\n    char kthCharacter(int k) {\n        \n    }\n};",
+    "python3": "class Solution:\n    def kthCharacter(self, k: int) -> str:\n        ",
+    "rust": "impl Solution {\n    pub fn kth_character(k: i32) -> char {\n        \n    }\n}"
+  }
+}

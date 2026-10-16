@@ -1,0 +1,32 @@
+{
+  "questionId": "1",
+  "frontendId": "1",
+  "title": "Two Sum",
+  "slug": "two-sum",
+  "difficulty": "Easy",
+  "url": "https://leetcode.com/problems/two-sum/",
+  "compare": "unordered",
+  "metaData": {
+    "name": "twoSum",
+    "params": [
+      {
+        "name": "nums",
+        "type": "integer[]"
+      },
+      {
+        "name": "target",
+        "type": "integer"
+      }
+    ],
+    "return": {
+      "type": "integer[]",
+      "size": 2
+    },
+    "manual": false
+  },
+  "snippets": {
+    "cpp": "class Solution {\npublic:\n    vector<int> twoSum(vector<int>& nums, int target) {\n        \n    }\n};",
+    "python3": "class Solution:\n    def twoSum(self, nums: list[int], target: int) -> list[int]:\n        ",
+    "rust": "impl Solution {\n    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {\n        \n    }\n}"
+  }
+}

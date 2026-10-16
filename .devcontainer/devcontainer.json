@@ -1,28 +1,40 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/rust
 {
-	"name": "Rust",
-	"image": "mcr.microsoft.com/devcontainers/rust:1-bullseye",
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"name": "leetcode-env",
+	// コンパイラなどのツールをイメージのレイヤーにキャッシュするため Dockerfile を使う
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"mounts": [
+		// Windows ホストの bind mount はファイル I/O が遅いため、ビルドの成果物（.build/）は名前付きボリュームに置く
+		"source=${localWorkspaceFolderBasename}-build,target=${containerWorkspaceFolder}/.build,type=volume",
+		// LeetCode の Cookie（タスク "login" で登録する）を、コンテナを作り直しても残す
+		"source=leetcode-env-config,target=/home/vscode/.config/leetcode-env,type=volume"
+	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "chmod u+x ./.devcontainer/postCreateCommand.bash",
-	// Configure tool-specific properties.
-	// "customizations": {},
-	// "postStartCommand": "./.devcontainer/postCreateCommand.bash",
+	"postCreateCommand": "bash ./.devcontainer/postCreateCommand.bash",
+
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"forbeslindesay.forbeslindesay-taskrunner",
-				"GitHub.copilot",
-				"LeetCode.vscode-leetcode",
-				"ms-vscode.cpptools-extension-pack",
-				"wangtao0101.debug-leetcode"
+				// タスク（.vscode/tasks.json）をステータスバーのボタンからクリックで実行する
+				"actboy168.tasks",
+				// C++ の補完と自動フォーマット
+				"ms-vscode.cpptools",
+				// Rust の補完と自動フォーマット
+				"rust-lang.rust-analyzer",
+				// TOML（Cargo.toml など）の補完とチェック。保守が止まった Even Better TOML の代わりに使う
+				// （Even Better TOML はベースイメージの Rust の feature が入れるので、- を付けて入れないようにする）
+				"tombi-toml.tombi",
+				"-tamasfe.even-better-toml",
+				// C++ と Rust のデバッガ（.vscode/launch.json）
+				"vadimcn.vscode-lldb",
+				// Python の補完（Pylance）とデバッガ（debugpy）
+				"ms-python.python",
+				// Python のチェックと自動フォーマット
+				"charliermarsh.ruff"
 			]
 		}
 	}

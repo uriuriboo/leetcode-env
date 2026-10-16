@@ -1,0 +1,27 @@
+{
+  "questionId": "200",
+  "frontendId": "200",
+  "title": "Number of Islands",
+  "slug": "number-of-islands",
+  "difficulty": "Medium",
+  "url": "https://leetcode.com/problems/number-of-islands/",
+  "compare": "exact",
+  "metaData": {
+    "name": "numIslands",
+    "params": [
+      {
+        "name": "grid",
+        "type": "character[][]"
+      }
+    ],
+    "return": {
+      "type": "integer"
+    },
+    "manual": true
+  },
+  "snippets": {
+    "cpp": "class Solution {\npublic:\n    int numIslands(vector<vector<char>>& grid) {\n        \n    }\n};",
+    "python3": "class Solution:\n    def numIslands(self, grid: List[List[str]]) -> int:\n        ",
+    "rust": "impl Solution {\n    pub fn num_islands(grid: Vec<Vec<char>>) -> i32 {\n        \n    }\n}"
+  }
+}

@@ -1,0 +1,7 @@
+[build]
+# ビルドの成果物は .build/ にまとめる（devcontainer では名前付きボリューム。scripts/lclib/paths.py の CARGO_TARGET と合わせる）
+target-dir = ".build/cargo"
+
+# リンクを速くするため mold を使う（apt の mold パッケージが必要）
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]

@@ -1,0 +1,3 @@
+# Windows でチェックアウトしても、コンテナ内の bash や Python が読めるよう改行を LF にそろえる
+* text=auto eol=lf
+*.png binary

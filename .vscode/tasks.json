@@ -1,117 +1,259 @@
 {
+	// タスクはすべて scripts/lc.py を呼ぶ。開いているファイル（${file}）から問題と言語を判定する
+	// ステータスバーのボタン（拡張機能 Tasks。options.statusbar で設定）か、Ctrl+Shift+P →「タスク: タスクの実行」から実行する
+	// - filePattern のあるボタンは、問題のファイル（problems/ の中）を開いているときだけ出る
+	// - ボタンは前から 6 個まで並び、残りは「その他」から選ぶ（.vscode/settings.json の tasks.statusbar.limit）
 	"version": "2.0.0",
 	"tasks": [
-		// {
-			
-		// 	"type": "cargo",
-		// 	"command": "build",
-		// 	"problemMatcher": [
-		// 		"$rustc"
-		// 	],
-		// 	"group": "build",
-		// 	"label": "rust: cargo build"
-		// },
-		// {
-		// 	"type": "shell",
-		// 	"command":[ "cd ${workspaceFolder}/abc253/src/bin/ & pwd",
-		// 		//"cargo build & cargo compete t ${fileBasenameNoExtension}",
-				
-		// 	],
-			
-		// 	"group": "build",
-		// 	"label": "rust: cd cargo build"
-		// },
-		// {
-		// 	"type": "shell",
-		// 	"command": [
-		// 		"pwd"
-		// 	],
-		// 	"group": "test",
-		// 	"label": "pwd"
-		// },
-	// 	{
-	// 		"label": "build & test",
-	// 		"type": "shell",
-	// 		"command": "python3",
-	// 		"args": [
-	// 			"${workspaceFolder}/scripts/test.py",
-	// 			"${file}"
-	// 		],
-	// 		"group": {
-	// 			"kind": "build",
-	// 			"isDefault": true
-	// 		},
-	// 		"problemMatcher": [],
-	// 	},
-	// 	{
-	// 		"label": "build & test release",
-	// 		"type": "shell",
-	// 		"command": "python3",
-	// 		"args": [
-	// 			"${workspaceFolder}/scripts/test_release.py",
-	// 			"${file}"
-	// 		],
-	// 		"group": {
-	// 			"kind": "build",
-	// 			"isDefault": true
-	// 		},
-	// 		"problemMatcher": [],
-	// 	},
-	// 	{
-	// 		"label": "submit",
-	// 		"type": "shell",
-	// 		"command": "python3",
-	// 		"args": [
-	// 			"${workspaceFolder}/scripts/sub.py",
-	// 			"${file}"
-	// 		],
-	// 		"group": {
-	// 			"kind": "build",
-	// 			"isDefault": true
-	// 		},
-	// 		"problemMatcher": [],
-	// 	},
-	// 	{
-	// 		"label": "rust: cargo compete new",
-	// 		"type": "cargo",
-	// 		"command": "compete",
-	// 		"args": [
-	// 			"new",
-	// 			"${input:contest}"
-	// 		]
-	// 	},
-	// 	{
-	// 		"label": "rust: cargo member include",
-	// 		"type": "cargo",
-	// 		"command": "member",
-	// 		"args": [
-	// 			"include",
-	// 			"${input:contest}"
-	// 		]
-	// 	},
-	// 	{
-	// 		"label": "new contest",
-	// 		"dependsOrder": "sequence",
-	// 		"dependsOn": [
-	// 			"rust: cargo compete new",
-	// 			"rust: cargo member include",
-	// 		],
-	// 		"presentation": {
-	// 			"echo": false,
-	// 			"reveal": "silent",
-	// 			"focus": false,
-	// 			"panel": "shared",
-	// 			"showReuseMessage": true,
-	// 			"clear": true
-	// 		},
-	// 		"problemMatcher": []
-	// 	}
-	// ],
-	// "inputs": [
-	// 	{
-	// 		"id": "contest",
-	// 		"description": "contestID",
-	// 		"type": "promptString"
-	// 	}
+		{
+			"label": "test",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "test", "${file}"],
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"presentation": {
+				"clear": true
+			},
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(beaker) test",
+					"detail": "tests/ のケースで手元でテストする",
+					"filePattern": "/problems/"
+				}
+			}
+		},
+		{
+			"label": "run (input.txt)",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "run", "${file}"],
+			"presentation": {
+				"clear": true
+			},
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(play) run",
+					"detail": "input.txt を入力にして実行する",
+					"filePattern": "/problems/"
+				}
+			}
+		},
+		{
+			"label": "submit",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "submit", "${file}"],
+			"presentation": {
+				"clear": true
+			},
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(cloud-upload) submit",
+					"detail": "手元でテストしてから LeetCode に提出する",
+					"filePattern": "/problems/"
+				}
+			}
+		},
+		{
+			"label": "test (remote)",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "remote", "--save", "${file}"],
+			"presentation": {
+				"clear": true
+			},
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(cloud) remote",
+					"detail": "tests/ の入力を LeetCode のサーバーで実行し、LeetCode の正解と比べる",
+					"filePattern": "/problems/"
+				}
+			}
+		},
+		{
+			"label": "test release",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "test", "--release", "${file}"],
+			"presentation": {
+				"clear": true
+			},
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(rocket) release",
+					"detail": "LeetCode と同じ最適化でビルドしてテストする（実行時間の確認用）",
+					"filePattern": "/problems/"
+				}
+			}
+		},
+		{
+			"label": "new problem",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "new", "${input:problem}", "--lang", "${input:lang}"],
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(add) new",
+					"detail": "問題を取得して、問題文・サンプル・解答のひな形を作る"
+				}
+			}
+		},
+		{
+			"label": "new daily problem",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "daily", "--lang", "${input:lang}"],
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(calendar) daily",
+					"detail": "今日の問題（Daily Question）を取得する"
+				}
+			}
+		},
+		{
+			"label": "stress: init",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "stress", "init", "${file}"],
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(zap) stress init",
+					"detail": "ランダムテストの gen.py・naive.py のひな形を作る",
+					"filePattern": "/problems/"
+				}
+			}
+		},
+		{
+			"label": "stress: hack",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "stress", "hack", "${file}"],
+			"presentation": {
+				"clear": true
+			},
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(zap) stress hack",
+					"detail": "ランダムな入力で愚直解と比べ、反例を探す",
+					"filePattern": "/problems/"
+				}
+			}
+		},
+		{
+			"label": "visualize tree",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/visualize.py", "tree", "${workspaceFolder}/input.txt"],
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(type-hierarchy) tree",
+					"detail": "input.txt の二分木を画像にする"
+				}
+			}
+		},
+		{
+			"label": "visualize graph",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/visualize.py", "graph", "${workspaceFolder}/input.txt"],
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(graph) graph",
+					"detail": "input.txt のグラフを画像にする"
+				}
+			}
+		},
+		{
+			"label": "visualize graph (directed)",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/visualize.py", "graph", "${workspaceFolder}/input.txt", "--directed"],
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(graph) digraph",
+					"detail": "input.txt のグラフを有向グラフとして画像にする"
+				}
+			}
+		},
+		{
+			"label": "login",
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "login"],
+			"problemMatcher": [],
+			"options": {
+				"statusbar": {
+					"hide": false,
+					"label": "$(account) login",
+					"detail": "LeetCode の Cookie を登録する（test (remote) と submit に必要）"
+				}
+			}
+		},
+		// F5 のデバッグ（.vscode/launch.json の preLaunchTask）で使う。単体では実行しないので、一覧とステータスバーに出さない
+		{
+			"label": "debug: build C++",
+			"hide": true,
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "build", "--lang", "cpp", "${file}"],
+			"problemMatcher": []
+		},
+		{
+			"label": "debug: build Rust",
+			"hide": true,
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "build", "--lang", "rust", "${file}"],
+			"problemMatcher": []
+		},
+		{
+			"label": "debug: build Python",
+			"hide": true,
+			"type": "shell",
+			"command": "python3",
+			"args": ["${workspaceFolder}/scripts/lc.py", "build", "--lang", "python", "${file}"],
+			"problemMatcher": []
+		}
+	],
+	"inputs": [
+		{
+			"id": "problem",
+			"type": "promptString",
+			"description": "問題の番号・slug・URL（例：1、two-sum、https://leetcode.com/problems/two-sum/）"
+		},
+		{
+			"id": "lang",
+			"type": "pickString",
+			"description": "解答の言語（all は 3 つとも作る）",
+			"options": ["cpp", "rust", "python", "all"],
+			"default": "cpp"
+		}
 	]
 }

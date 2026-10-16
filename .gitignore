@@ -1,0 +1,12 @@
+# 解いた問題（自分の解答を管理したいときは、この行を消す）
+/problems/
+
+# scripts/lc.py が生成するもの
+/Cargo.toml
+/Cargo.lock
+/.build/
+/input.txt
+/graph.png
+/graph.dot
+
+__pycache__/
