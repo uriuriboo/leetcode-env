@@ -1,16 +1,44 @@
 {
-    // IntelliSense を使用して利用可能な属性を学べます。
-    // 既存の属性の説明をホバーして表示します。
-    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    // F5 で、開いている問題を input.txt を標準入力にしてデバッグする
+    // preLaunchTask（scripts/lc.py build）が問題をビルドし、.build/current/ をその問題に向ける。
+    // 開いているファイルが問題の外（input.txt など）なら、最後にビルド・テストした問題を使う
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "cppdbg",
+            "name": "Debug C++",
+            "type": "lldb",
             "request": "launch",
-            "name": "Debug",
-            "program": "${workspaceFolder}/${file}",
+            "preLaunchTask": "debug: build C++",
+            "program": "${workspaceFolder}/.build/current/cpp",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "stdio": ["${workspaceFolder}/input.txt"],
+            // LeetCode の木やリストの問題はメモリを解放しないのが普通なので、リークの検出は切る（デバッガの下では動かない）
+            "env": {
+                "ASAN_OPTIONS": "detect_leaks=0"
+            },
+            "sourceLanguages": ["cpp"]
+        },
+        {
+            "name": "Debug Rust",
+            "type": "lldb",
+            "request": "launch",
+            "preLaunchTask": "debug: build Rust",
+            "program": "${workspaceFolder}/.build/current/rust",
+            "args": [],
+            "stdio": ["${workspaceFolder}/input.txt"],
+            "sourceLanguages": ["rust"]
+        },
+        // solution.py のほか、stress/ の naive.py・gen.py を開いていれば、それをデバッグする
+        {
+            "name": "Debug Python",
+            "type": "debugpy",
+            "request": "launch",
+            "preLaunchTask": "debug: build Python",
+            "python": "/usr/local/bin/python3.14",
+            "program": "${workspaceFolder}/support/python/lc_runner.py",
+            "args": ["--stdin", "${workspaceFolder}/input.txt", "--from", "${workspaceFolder}/.build/current/python"],
+            "console": "integratedTerminal",
+            "justMyCode": true
         }
     ]
 }

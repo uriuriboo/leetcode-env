@@ -1,0 +1,7 @@
+line-length = 120
+
+[lint.per-file-ignores]
+# 解答は LeetCode と同じく import なしでモジュールを使えるよう、from lc_support import * で読み込んでいる
+"problems/**" = ["F403", "F405"]
+".github/ci/**" = ["F403", "F405"]
+"support/python/lc_support.py" = ["E402", "F403"]

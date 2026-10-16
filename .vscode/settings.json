@@ -1,18 +1,55 @@
 {
-    "[rust]": {
-        "editor.formatOnSave": true,
-        "editor.formatOnPaste": true,
-        "editor.formatOnType": true,
-        "editor.defaultFormatter": "rust-lang.rust-analyzer",
-        "rust-analyzer.check.command": "clippy",
+    // ---- 問題文 ----
+    // problem.md（中身は LeetCode の HTML）は、開くとプレビューで表示する
+    "workbench.editorAssociations": {
+        "problem.md": "vscode.markdown.preview.editor"
     },
+
+    // ---- C++ ----
     "[cpp]": {
         "editor.formatOnSave": true,
-        "editor.formatOnPaste": true,
-        "editor.formatOnType": true,
-        "editor.wordBasedSuggestions": false,
-        "editor.suggest.insertMode": "replace",
-        "editor.semanticHighlighting.enabled": true
-    }
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    // LeetCode と同じ clang 19・C++23 で補完する。leetcode.hpp は support/cpp にある
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++-19",
+    "C_Cpp.default.cppStandard": "c++23",
+    "C_Cpp.default.intelliSenseMode": "linux-clang-x64",
+    "C_Cpp.default.includePath": ["${workspaceFolder}/support/cpp"],
+    "C_Cpp.default.defines": ["LOCAL"],
 
+    // ---- Rust ----
+    "[rust]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "rust-analyzer.check.command": "clippy",
+    // 保存時のチェックを開いている問題（パッケージ）だけにする（問題が増えても遅くならない）
+    "rust-analyzer.check.workspace": false,
+    // タスクの cargo build と .build/cargo のロックを取り合わないよう、別のディレクトリを使う
+    "rust-analyzer.cargo.targetDir": true,
+
+    // ---- Python ----
+    // 解答は LeetCode と同じ Python 3.14 で動かすので、補完もそれに合わせる（.devcontainer/Dockerfile）
+    "python.defaultInterpreterPath": "/usr/local/bin/python3.14",
+    // from lc_support import * を解決できるようにする
+    "python.analysis.extraPaths": ["${workspaceFolder}/support/python"],
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+
+    // ---- ビルドの成果物（.build/）は監視・検索しない ----
+    "files.watcherExclude": {
+        "**/.build/**": true
+    },
+    "search.exclude": {
+        "**/.build": true
+    },
+
+    // ---- ステータスバーのタスクのボタン（拡張機能 Tasks） ----
+    // tasks.json で options.statusbar.hide を false にしたタスクだけを出す（rust-analyzer が自動で作る cargo のタスクなどは出さない）
+    "tasks.statusbar.default.hide": true,
+    // ボタンは前から 6 個まで並べ、残りは「その他」から選ぶ
+    "tasks.statusbar.limit": 6,
+    "tasks.statusbar.select.label": "$(list-unordered) その他"
 }

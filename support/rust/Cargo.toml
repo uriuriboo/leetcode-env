@@ -1,0 +1,8 @@
+[package]
+name = "leetcode-support"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "LeetCode の Rust 環境を手元で再現する（ListNode・TreeNode と、入出力の変換）"
+
+[dependencies]

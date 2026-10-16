@@ -1,111 +1,46 @@
 {
-  "atcodertemplate": {
-    "prefix": "tmplt",
+  "defs": {
+    "prefix": "defs",
     "body": [
-      "#include <bits/stdc++.h>",
-      "using namespace std;",
       "using ll = long long;",
       "#define rep(i, n) for (ll i = 0; i < (n); i++)",
-      "#define rep2(i,k,n) for(ll i = k;i < (n);i++)",
-      "#define ALL(a) (a).begin(),(a).end()",
-      "#define ALLR(a) (a).rbegin(),(a).rend()",
-      "using P = pair<ll,ll>;",
+      "#define rep2(i, k, n) for (ll i = k; i < (n); i++)",
+      "#define ALL(a) (a).begin(), (a).end()",
+      "#define ALLR(a) (a).rbegin(), (a).rend()",
+      "using P = pair<ll, ll>;",
       "const ll MOD = 1e9 + 7;",
       "const int INF = 1e9;",
       "const ll lINF = 1e18;",
       "const int dx[4] = {1, 0, -1, 0};",
       "const int dy[4] = {0, 1, 0, -1};",
-      "template <class T> inline bool chmin(T &a, T b) {if (a > b) {a = b; return true;} return false;}",
-      "template <class T> inline bool chmax(T &a, T b) {if (a < b) {a = b; return true;} return false;}\n",
       "template <class T>",
-      "T GCD(T a, T b) {",
-      "\tif (b == 0)",
-      "\t\treturn a;",
-      "\telse",
-      "\t\treturn GCD(b, a % b);",
-      "}\n",
+      "inline bool chmin(T& a, T b) {",
+      "    if (a > b) {",
+      "        a = b;",
+      "        return true;",
+      "    }",
+      "    return false;",
+      "}",
       "template <class T>",
-      "inline T LCM(T a, T b) {",
-      "\t return b / GCD(a, b) * a;",
-      "}\n",
-      "template <class T>",
-      "T nCr_naive(T n, int r) {",
-      "\tT ret(1);",
-      "\tfor (int i = 0; i < r; i++) {",
-      "\t\tret *= n;",
-      "\t\tret /= T(i + 1);",
-      "\t\tn -= T(1);",
-      "\t}",
-      "\treturn ret;",
-      "}\n",
-      "int main(void){",
-      "\tint n,$1;",
-      "\tll ans = 0;",
-      "\tcin >> n >> $1;",
-      "\tvector<ll> a(n);",
-      "\trep(i, n) cin >> a[i];\n",
-      "\treturn 0;",
-      "}"
+      "inline bool chmax(T& a, T b) {",
+      "    if (a < b) {",
+      "        a = b;",
+      "        return true;",
+      "    }",
+      "    return false;",
+      "}",
+      ""
     ],
-    "description": "競プロのテンプレート"
+    "description": "よく使う型・マクロ・定数（@lc code=start の直後、class Solution の前に入れる。下のスニペットの多くはこれを使う）"
   },
-  "atcoder_n_templt": {
-    "prefix": "ntemplt",
+  "dbg": {
+    "prefix": "dbg",
     "body": [
-      "#include <bits/stdc++.h>",
-      "using namespace std;",
-      "using ll = long long;",
-      "#define rep(i, n) for (ll i = 0; i < (n); i++)",
-      "#define rep2(i,k,n) for(ll i = k;i < (n);i++)",
-      "#define ALL(a) (a).begin(),(a).end()",
-      "#define ALLR(a) (a).rbegin(),(a).rend()",
-      "using P = pair<ll,ll>;",
-      "const ll MOD = 1e9 + 7;",
-      "const int INF = 1e9;",
-      "const ll lINF = 1e18;",
-      "const int dx[4] = {1, 0, -1, 0};",
-      "const int dy[4] = {0, 1, 0, -1};",
-      "template <class T> inline bool chmin(T &a, T b) {if (a > b) {a = b; return true;} return false;}",
-      "template <class T> inline bool chmax(T &a, T b) {if (a < b) {a = b; return true;} return false;}\n",
-      "int main(void){",
-      "\tint n;",
-      "\tll ans = 0;",
-      "\tcin >> n;",
-      "\tvector<ll> $1(n);",
-      "\trep(i, n) cin >> $1[i];\n\n",
-      "\treturn 0;",
-      "}"
+      "#ifdef LOCAL",
+      "cerr << \"$1 = \" << $1 << endl;",
+      "#endif"
     ],
-    "description": "nと要素数nの配列aを扱うテンプレート",
-  },
-  "n_m_template": {
-    "prefix": "nmtmplt",
-    "body": [
-      "#include <bits/stdc++.h>",
-      "using namespace std;",
-      "using ll = long long;",
-      "#define rep(i, n) for (ll i = 0; i < (n); i++)",
-      "#define rep2(i,k,n) for(ll i = k;i < (n);i++)",
-      "#define ALL(a) (a).begin(),(a).end()",
-      "#define ALLR(a) (a).rbegin(),(a).rend()",
-      "using P = pair<ll,ll>;",
-      "const ll MOD = 1e9 + 7;",
-      "const int INF = 1e9;",
-      "const ll lINF = 1e18;",
-      "const int dx[4] = {1, 0, -1, 0};",
-      "const int dy[4] = {0, 1, 0, -1};",
-      "template <class T> inline bool chmin(T &a, T b) {if (a > b) {a = b; return true;} return false;}",
-      "template <class T> inline bool chmax(T &a, T b) {if (a < b) {a = b; return true;} return false;}\n",
-      "int main(void){",
-      "\tint n,$1;",
-      "\tll ans = 0;",
-      "\tcin >> n >> $1;",
-      "\tvector<ll> $2(n);",
-      "\trep(i, n) cin >> $2[i];\n\n",
-      "\treturn 0;",
-      "}"
-    ],
-    "description": "競プロのnとmの2値を扱うテンプレート"
+    "description": "手元でだけ表示するデバッグ出力（手元のビルドでは LOCAL が定義される。提出してもそのままでよい）"
   },
   "vector<int>略": {
     "prefix": "vi",
@@ -117,40 +52,20 @@
     "body": "vector<ll> $1;\n",
     "description": "vector<ll>の省略"
   },
-  "vector<string>略":{
+  "vector<string>略": {
     "prefix": "vs",
     "body": "vector<string> $1;\n",
     "description": "vector<string>の省略"
   },
-  "vector<vector<T>> ":{
+  "vector<vector<T>> ": {
     "prefix": "vv",
     "body": "vector<vector<$1>> $2($3,vector<$1>($4));\n",
-    "description": "二次元配列",
+    "description": "二次元配列"
   },
-  "map<int,int>略":{
+  "map<int,int>略": {
     "prefix": "mpii",
     "body": "map<int,int> $1;\n",
     "description": "map<int,int>略の省略"
-  },
-  "出力改行":{
-    "prefix": "oen",
-    "body": "cout << $1 << endl;\n",
-    "description": "出力と改行を行う"
-  },
-  "ans 出力": {
-    "prefix": "oans",
-    "body": "cout << ans << endl;",
-    "description": "ansの出力"
-  },
-  "Yes 出力": {
-    "prefix": "oy",
-    "body": "cout << \"Yes\" << endl;\n",
-    "description": "Yesの出力"
-  },
-  "No 出力": {
-    "prefix": "on",
-    "body": "cout << \"No\" << endl;\n",
-    "description": "Noの出力"
   },
   "組み合わせ": {
     "prefix": "comb",
@@ -164,7 +79,7 @@
       "\t\tn -= T(1);",
       "}",
       "\treturn ret;",
-      "}",
+      "}"
     ],
     "description": "組み合わせの計算"
   },
@@ -192,10 +107,10 @@
       "\t\tx /= y;",
       "\t}",
       "\treturn atoi(s.c_str());",
-      "}",
-    ],
+      "}"
+    ]
   },
-  "素因数分解":{
+  "素因数分解": {
     "prefix": "fprifa",
     "body": [
       "//(素因数,素因数の数)のペア",
@@ -211,11 +126,11 @@
       "\t}",
       "\tif(n != 1) res.emplace_back(n,1);\n",
       "\treturn res;",
-      "}",
+      "}"
     ],
-    "description": "素因数分解を因数、その数のペアのvectorで返す",
+    "description": "素因数分解を因数、その数のペアのvectorで返す"
   },
-  "gcd,lcm(最大公約数、最小公倍数)":{
+  "gcd,lcm(最大公約数、最小公倍数)": {
     "prefix": "gcdlcm",
     "body": [
       "template <class T>",
@@ -228,9 +143,9 @@
       "template <class T>",
       "inline T LCM(T a, T b) {",
       "\t return b / GCD(a, b) * a;",
-      "}\n",
+      "}\n"
     ],
-    "description": "最大公約数と最大公約数:LCMはオーバーフローを避けるため計算の順序を変えた",
+    "description": "最大公約数と最大公約数:LCMはオーバーフローを避けるため計算の順序を変えた"
   },
   "editdistance": {
     "prefix": "editdist",
@@ -248,7 +163,7 @@
       "\t\t}",
       "\t}",
       "\treturn dp[a][b];",
-      "}",
+      "}"
     ],
     "description": "エディットディスタンス"
   },
@@ -288,9 +203,9 @@
       "\t\t}",
       "\t}",
       "\treturn d[g.first][g.second];",
-      "}",
+      "}"
     ],
-    "description": "Gridグラフでの01bsf",
+    "description": "Gridグラフでの01bsf"
   },
   "Gridbsf": {
     "prefix": "fgbsf",
@@ -330,9 +245,9 @@
       "\t\t}",
       "\t}",
       "\treturn d[g.first][g.second];",
-      "}",
+      "}"
     ],
-    "description": "Gridグラフでの幅優先探索",
+    "description": "Gridグラフでの幅優先探索"
   },
   "dijkstra": {
     "prefix": "fdijk",
@@ -361,7 +276,7 @@
       "\t\t}",
       "\t}",
       "\treturn dist;",
-      "}",
+      "}"
     ],
     "description": "ダイクストラ法の関数"
   },
@@ -370,16 +285,16 @@
     "body": [
       "/*nが素数であるかbool型で判定*/",
       "bool isPrime(ll x){",
-        "\tif(x < 2) return 0;",
-        "\telse if(x == 2) return true;\n",
-        "\tif(x%2 == 0) return false;",
-        "\tfor(int i = 3;i*i <= x;i+=2){",
-            "\t\tif(x%i == 0) return false;",
-        "\t}",
-        "\treturn true;",
-    "}",
+      "\tif(x < 2) return 0;",
+      "\telse if(x == 2) return true;\n",
+      "\tif(x%2 == 0) return false;",
+      "\tfor(int i = 3;i*i <= x;i+=2){",
+      "\t\tif(x%i == 0) return false;",
+      "\t}",
+      "\treturn true;",
+      "}"
     ],
-    "description": "素数判定",
+    "description": "素数判定"
   },
   "最長共通部分列": {
     "prefix": "lcsfunc",
@@ -398,9 +313,9 @@
       "\t\t}",
       "\t}",
       "\treturn dp[a][b];",
-      "}",
+      "}"
     ],
-    "description": "最長共通部分列",
+    "description": "最長共通部分列"
   },
   "回文判定": {
     "prefix": "ispal",
@@ -409,18 +324,18 @@
       "\tstring t = s;",
       "\treverse(t.begin(),t.end());",
       "\treturn s == t;",
-      "}",
+      "}"
     ],
-    "description": "回文判定をbool型で返す",
+    "description": "回文判定をbool型で返す"
   },
   "累積和の計算(前から足す)": {
     "prefix": "cumsump",
     "body": [
       "//vector<int> a(n)に対して  c[0]は値がなし",
       "vector<int> c(n+1);",
-      "rep2(i,1,n+1) c[i] = c[i-1]+a[i-1];",
+      "rep2(i,1,n+1) c[i] = c[i-1]+a[i-1];"
     ],
-    "description": "累積和の計算式",
+    "description": "累積和の計算式"
   },
   "累積和の計算(後ろから)": {
     "prefix": "cumsumb",
@@ -431,11 +346,11 @@
       "for(int i = n-2;i >= 0;i--){",
       "\tcm[i] = c[i+1] + a[i];",
       "}",
-      "//cm[i]*a[i]でよく使う",
+      "//cm[i]*a[i]でよく使う"
     ],
-    "description": "累積和の計算式",
+    "description": "累積和の計算式"
   },
-  "bit探索":{
+  "bit探索": {
     "prefix": "pbit",
     "body": [
       "rep(bit,(1<<$1)){",
@@ -446,29 +361,26 @@
       "\t\t}",
       "\t}\n",
       "\t$3",
-      "}\n",
+      "}\n"
     ],
     "description": "bit探索"
   },
-  "めぐり式二分探索":{
+  "めぐり式二分探索": {
     "prefix": "binse",
     "body": [
       "bool P(int x) {\n",
-
       "}\n",
-      
       "// P(x) = true となる最小の整数 x を返す",
       "int binary_search(int l,int r) {",
-          "\t// P(left) = False, P(right) = True となるように",
-          "\tint left, right; \n",
-          
-          "\twhile (right - left > 1) {",
-              "\t\tint mid = left + (right - left) / 2;",
-              "\t\tif (P(mid)) right = mid;",
-              "\t\telse left = mid;",
-          "\t}",
-          "\treturn right;",
-      "}\n",
+      "\t// P(left) = False, P(right) = True となるように",
+      "\tint left, right; \n",
+      "\twhile (right - left > 1) {",
+      "\t\tint mid = left + (right - left) / 2;",
+      "\t\tif (P(mid)) right = mid;",
+      "\t\telse left = mid;",
+      "\t}",
+      "\treturn right;",
+      "}\n"
     ],
     "description": "めぐり式二分探索"
   }

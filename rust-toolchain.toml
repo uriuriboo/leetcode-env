@@ -1,0 +1,6 @@
+# LeetCode の Rust の環境（Rust 1.88.0、edition 2024）に合わせる
+# rust-src は rust-analyzer が標準ライブラリを補完するために必要
+[toolchain]
+channel = "1.88.0"
+components = ["rustfmt", "clippy", "rust-src"]
+profile = "minimal"

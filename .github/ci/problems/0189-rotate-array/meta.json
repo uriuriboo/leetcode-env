@@ -1,0 +1,33 @@
+{
+  "questionId": "189",
+  "frontendId": "189",
+  "title": "Rotate Array",
+  "slug": "rotate-array",
+  "difficulty": "Medium",
+  "url": "https://leetcode.com/problems/rotate-array/",
+  "compare": "exact",
+  "metaData": {
+    "name": "rotate",
+    "params": [
+      {
+        "name": "nums",
+        "type": "integer[]"
+      },
+      {
+        "name": "k",
+        "type": "integer"
+      }
+    ],
+    "return": {
+      "type": "void"
+    },
+    "output": {
+      "paramindex": 0
+    }
+  },
+  "snippets": {
+    "cpp": "class Solution {\npublic:\n    void rotate(vector<int>& nums, int k) {\n        \n    }\n};",
+    "python3": "class Solution:\n    def rotate(self, nums: list[int], k: int) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        ",
+    "rust": "impl Solution {\n    pub fn rotate(nums: &mut Vec<i32>, k: i32) {\n        \n    }\n}"
+  }
+}

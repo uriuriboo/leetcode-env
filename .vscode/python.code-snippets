@@ -1,0 +1,58 @@
+{
+    "tree_dfs": {
+        "prefix": "tdfs",
+        "body": [
+            "def dfs(node: TreeNode | None) -> int:",
+            "    if node is None:",
+            "        return 0",
+            "    left, right = dfs(node.left), dfs(node.right)",
+            "    $0"
+        ],
+        "description": "二分木の再帰"
+    },
+    "grid_neighbors": {
+        "prefix": "dirs",
+        "body": [
+            "for ny, nx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)):",
+            "    if 0 <= ny < h and 0 <= nx < w:",
+            "        $0"
+        ],
+        "description": "グリッドの上下左右（範囲外は飛ばす）"
+    },
+    "binary_search": {
+        "prefix": "bins",
+        "body": [
+            "# ok(left) = False、ok(right) = True になるように置き、ok(x) = True となる最小の x を求める",
+            "def ok(x: int) -> bool:",
+            "    return $2",
+            "",
+            "left, right = -1, $1",
+            "while right - left > 1:",
+            "    mid = (left + right) // 2",
+            "    if ok(mid):",
+            "        right = mid",
+            "    else:",
+            "        left = mid"
+        ],
+        "description": "めぐり式二分探索"
+    },
+    "memo": {
+        "prefix": "memo",
+        "body": [
+            "@cache",
+            "def dp(${1:i}: int) -> int:",
+            "    $0"
+        ],
+        "description": "メモ化再帰（functools.cache。LeetCode では import なしで使える）"
+    },
+    "list_iter": {
+        "prefix": "lliter",
+        "body": [
+            "cur = ${1:head}",
+            "while cur:",
+            "    $0",
+            "    cur = cur.next"
+        ],
+        "description": "連結リストをたどる"
+    }
+}
