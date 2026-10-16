@@ -84,8 +84,10 @@ def python_target(file_arg, problem):
 
 def cmd_build(args):
     problem, lang = problems.resolve(args.file, args.lang, langs.LANGUAGES)
-    py_target = python_target(args.file, problem) if lang.key == "python" else None
-    if py_target is None:
+    py_target = python_target(args.file, problem) if args.lang in (None, "python") else None
+    if py_target is not None:
+        lang = langs.LANGUAGES["python"]
+    else:
         # 問題の中の .py（naive.py など）をデバッグするときは、solution.py が無くてもよい
         problem, lang = target(args)
     if lang.key == "python":
