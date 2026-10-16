@@ -28,7 +28,7 @@ test -x .build/current/rust
 grep -q naive.py .build/current/python
 
 # ランダムテスト（正しい解答なので、反例は見つからない）
-lc stress hack --max 30 problems/0189-rotate-array/solution.cpp
+lc stress hack problems/0189-rotate-array/solution.cpp --max 30
 
 # 木とグラフの可視化
 printf '[3,9,20,null,null,15,7]\n' > input.txt
