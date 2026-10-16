@@ -1,0 +1,9 @@
+# C++ の自動フォーマット（保存時に cpptools が使う）。LeetCode のひな形に合わせ、
+# インデントは 4、public: は字下げしない、& と * は型の側に付ける（vector<int>& nums）
+BasedOnStyle: Google
+IndentWidth: 4
+AccessModifierOffset: -4
+ColumnLimit: 120
+DerivePointerAlignment: false
+PointerAlignment: Left
+AllowShortCaseLabelsOnASingleLine: true
